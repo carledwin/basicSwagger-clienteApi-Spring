@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "API para cadastro e manutenção de CLIENTES"
+  description: "API para cadastro e manutenÃ§Ã£o de CLIENTES"
   version: "1.0.0"
   title: "Cliente API"
   contact:
@@ -18,9 +18,9 @@ schemes:
     
 tags: 
   - name: "Consulta"
-    description: "Acesso a operações de consulta de CLIENTES"
-  - name: "Manutenção"
-    description: "Acesso a operações de manutençao de CLIENTES"
+    description: "Acesso a operaÃ§Ãµes de consulta de CLIENTES"
+  - name: "ManutenÃ§Ã£o"
+    description: "Acesso a operaÃ§Ãµes de manutenÃ§ao de CLIENTES"
 
 paths:
   
@@ -51,7 +51,7 @@ paths:
     
     post:
       tags: 
-        - "Manutenção"
+        - "ManutenÃ§Ã£o"
       summary: "Cria novo cliente"
       operationId: "criaCliente"
       description: "|
@@ -63,7 +63,7 @@ paths:
       parameters:
       - in: "body"
         name: "cliente"
-        description: "Informações do Cliente."
+        description: "InformaÃ§Ãµes do Cliente."
         required: true
         schema:
           $ref: "#/definitions/Cliente"
@@ -103,7 +103,7 @@ paths:
     
     put:
       tags: 
-        - "Manutenção"
+        - "ManutenÃ§Ã£o"
       summary: "Altera de cliente"
       operationId: "alteraCliente"
       description: "|
@@ -126,7 +126,7 @@ paths:
     
     delete:
       tags: 
-        - "Manutenção"
+        - "ManutenÃ§Ã£o"
       summary: "Remove o cliente"
       description: "|
         endpoint *remove o* cliente."

@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-05T17:41:52.644Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-08T16:23:03.102-02:00")
 
 @Api(value = "clientes", description = "the clientes API")
 public interface ClientesApi {
@@ -47,6 +47,16 @@ public interface ClientesApi {
     ResponseEntity<Cliente> buscaCliente(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id);
 
 
+    @ApiOperation(value = "Busca todos clientes", notes = "| endpoint *busca todos* clientes.", response = Cliente.class, responseContainer = "List", tags={ "Consulta", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = Cliente.class, responseContainer = "List") })
+    
+    @RequestMapping(value = "/clientes",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<List<Cliente>> buscaTodos(@ApiParam(value = "" , defaultValue="application/json") @RequestHeader(value="Content-Type", required=false) String contentType);
+
+
     @ApiOperation(value = "Cria novo cliente", notes = "| endpoint *cria o* cliente.", response = Cliente.class, tags={ "Manutenção", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Novo cliente criado.", response = Cliente.class) })
@@ -55,7 +65,7 @@ public interface ClientesApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Cliente> criarCliente(@ApiParam(value = "Informações do Cliente." ,required=true )  @Valid @RequestBody Cliente cliente);
+    ResponseEntity<Cliente> criaCliente(@ApiParam(value = "Informações do Cliente." ,required=true )  @Valid @RequestBody Cliente cliente);
 
 
     @ApiOperation(value = "Remove o cliente", notes = "| endpoint *remove o* cliente.", response = Void.class, tags={ "Manutenção", })
@@ -64,6 +74,6 @@ public interface ClientesApi {
     
     @RequestMapping(value = "/clientes/{id}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> removerCliente(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id);
+    ResponseEntity<Void> removeCliente(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id);
 
 }

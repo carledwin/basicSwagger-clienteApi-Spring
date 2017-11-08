@@ -1,0 +1,2 @@
+Consultar todos clientes
+http://localhost:8080/clienteapi/v1/clientes
