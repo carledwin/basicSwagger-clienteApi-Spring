@@ -1,0 +1,273 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API para cadastro e manuten\u00e7\u00e3o de CLIENTES",
+    "version": "1.0.0",
+    "title": "Cliente API",
+    "contact": {
+      "email": "carlinstr@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http:\/\/www.apache.org\/licenses\/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "\/clienteapi\/v1",
+  "tags": [
+    {
+      "name": "clientes-api-controller",
+      "description": "the clientes API"
+    }
+  ],
+  "paths": {
+    "\/clientes": {
+      "get": {
+        "tags": [
+          "Consulta"
+        ],
+        "summary": "Busca todos clientes",
+        "description": "| endpoint *busca todos* clientes.",
+        "operationId": "buscaTodosUsingGET",
+        "consumes": [
+          "application\/json"
+        ],
+        "produces": [
+          "application\/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": false,
+            "type": "string",
+            "default": "application\/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Cliente"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Manuten\u00e7\u00e3o"
+        ],
+        "summary": "Cria novo cliente",
+        "description": "| endpoint *cria o* cliente.",
+        "operationId": "criaClienteUsingPOST",
+        "consumes": [
+          "application\/json"
+        ],
+        "produces": [
+          "application\/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cliente",
+            "description": "Informa\u00e7\u00f5es do Cliente.",
+            "required": true,
+            "schema": {
+              "$ref": "#\/definitions\/Cliente"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#\/definitions\/Cliente"
+            }
+          },
+          "201": {
+            "description": "Novo cliente criado.",
+            "schema": {
+              "$ref": "#\/definitions\/Cliente"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "\/clientes\/{id}": {
+      "get": {
+        "tags": [
+          "Consulta"
+        ],
+        "summary": "Busca de cliente",
+        "description": "| endpoint *busca o* cliente.",
+        "operationId": "buscaClienteUsingGET",
+        "consumes": [
+          "application\/json"
+        ],
+        "produces": [
+          "application\/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#\/definitions\/Cliente"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Manuten\u00e7\u00e3o"
+        ],
+        "summary": "Altera de cliente",
+        "description": "| endpoint *altera o* cliente.",
+        "operationId": "alteraClienteUsingPUT",
+        "consumes": [
+          "application\/json"
+        ],
+        "produces": [
+          "application\/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente alterado.",
+            "schema": {
+              "$ref": "#\/definitions\/Cliente"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Manuten\u00e7\u00e3o"
+        ],
+        "summary": "Remove o cliente",
+        "description": "| endpoint *remove o* cliente.",
+        "operationId": "removeClienteUsingDELETE",
+        "consumes": [
+          "application\/json"
+        ],
+        "produces": [
+          "*\/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente removido."
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Cliente": {
+      "type": "object",
+      "properties": {
+        "datanascimento": {
+          "type": "string",
+          "format": "date",
+          "description": "Data de nascimento do cliente"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Id do cliente."
+        },
+        "nome": {
+          "type": "string",
+          "description": "Nome do cliente"
+        },
+        "sobrenome": {
+          "type": "string",
+          "description": "Sobrenome do cliente"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status do cliente"
+        }
+      }
+    }
+  }
+}

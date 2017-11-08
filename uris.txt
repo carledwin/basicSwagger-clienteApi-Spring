@@ -11,3 +11,7 @@ http://localhost:8080/clienteapi/v1/clientes/10
 
 O id informado é inválido
 http://localhost:8080/clienteapi/v1/clientes/0
+
+
+Api-docs
+http://localhost:8080/clienteapi/v1/api-docs
