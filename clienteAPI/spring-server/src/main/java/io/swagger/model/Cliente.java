@@ -30,7 +30,19 @@ public class Cliente   {
   @JsonProperty("datanascimento")
   private LocalDate datanascimento = null;
 
-  public Cliente id(Integer id) {
+  public Cliente() {
+  }
+  
+  public Cliente(Integer id, String nome, String sobrenome, String status, LocalDate datanascimento) {
+	super();
+	this.id = id;
+	this.nome = nome;
+	this.sobrenome = sobrenome;
+	this.status = status;
+	this.datanascimento = datanascimento;
+  }
+
+public Cliente id(Integer id) {
     this.id = id;
     return this;
   }

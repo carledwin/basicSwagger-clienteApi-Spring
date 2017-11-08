@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,14 @@ import io.swagger.model.Cliente;
 @Controller
 public class ClientesApiController implements ClientesApi {
 
+	List<Cliente> clientes;
+	
+	public ClientesApiController() {
+		
+		clientes = new ArrayList<>();
+		clientes.add(new Cliente(1, "Carl Edwin Antonio", "Nascimento", "ativo", new LocalDate(1983, 2, 27)));
+		clientes.add(new Cliente(2, "Fulano ", "de Tal", "inativo", new LocalDate(2005, 7, 16)));
+	}
 
 
     public ResponseEntity<Cliente> alteraCliente(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id) {
@@ -28,23 +37,29 @@ public class ClientesApiController implements ClientesApi {
 
     public ResponseEntity<Cliente> buscaCliente(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id) {
         // do some magic!
-        return new ResponseEntity<Cliente>(HttpStatus.OK);
+    	
+    	Cliente cliente = null;
+    	
+    	if(null == id || id <= 0) {
+    		return new ResponseEntity("O id '" + id + "' informado é inválido.", HttpStatus.BAD_REQUEST);
+    	}else {
+    		for(Cliente cli : clientes) {
+    			
+    			if(cli.getId().equals(id)) {
+    				cliente = cli;
+    			}
+    		}
+    	}
+    	
+    	if(null == cliente) {
+    		return new ResponseEntity("Cliente com id '" + id + "' não encontrado.", HttpStatus.NOT_FOUND);
+    	}
+    	
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
 
     public ResponseEntity<List<Cliente>> buscaTodos(@ApiParam(value = "" , defaultValue="application/json") @RequestHeader(value="Content-Type", required=false) String contentType) {
     	// do some magic!
-    	Cliente cli = new Cliente();
-    	cli.setId(123);
-    	cli.setNome("Carl Edwin");
-    	
-    	Cliente cli2 = new Cliente();
-    	cli2.setId(1234343);
-    	cli2.setNome("Fulano");
-    	
-    	List<Cliente> clientes = new ArrayList<>();
-    	clientes.add(cli);
-    	clientes.add(cli2);
-    	
         return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
     }
 

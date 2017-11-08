@@ -1,2 +1,13 @@
 Consultar todos clientes
 http://localhost:8080/clienteapi/v1/clientes
+
+Consultar cliente por id
+http://localhost:8080/clienteapi/v1/clientes/1
+
+
+Test
+Cliente não encontrado
+http://localhost:8080/clienteapi/v1/clientes/10
+
+O id informado é inválido
+http://localhost:8080/clienteapi/v1/clientes/0
