@@ -37,8 +37,13 @@ public class ClientesApiController implements ClientesApi {
     	cli.setId(123);
     	cli.setNome("Carl Edwin");
     	
+    	Cliente cli2 = new Cliente();
+    	cli2.setId(1234343);
+    	cli2.setNome("Fulano");
+    	
     	List<Cliente> clientes = new ArrayList<>();
     	clientes.add(cli);
+    	clientes.add(cli2);
     	
         return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
     }
